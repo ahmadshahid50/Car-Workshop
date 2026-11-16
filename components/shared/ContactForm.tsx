@@ -16,6 +16,7 @@ export function ContactForm() {
   const [form, setForm] = useState(initialState);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (field: keyof typeof initialState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -35,22 +36,41 @@ export function ContactForm() {
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!validate()) return;
 
-    const message = [
-      `Name: ${form.name}`,
-      `Phone: ${form.phone}`,
-      `Vehicle: ${form.vehicle}`,
-      `Service: ${form.service}`,
-      `Problem: ${form.description}`,
-    ].join("\n");
+    const formElement = event.currentTarget;
+    const formData = new FormData(formElement);
+    formData.append("access_key", "ba10b624-5098-4377-85ce-f706ff795dc4");
 
-    const href = getWhatsAppHref(message);
-    window.open(href, "_blank", "noopener,noreferrer");
-    setStatus("Your inquiry is prepared in WhatsApp. Please send it to continue the discussion.");
-    setForm(initialState);
+    setLoading(true);
+    setStatus("");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+      const data: { success?: boolean; message?: string } = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || "Submission failed.");
+      }
+
+      setStatus("Thank you! Your message has been sent successfully.");
+      formElement.reset();
+      setForm(initialState);
+      setErrors({});
+    } catch (error) {
+      setStatus(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -61,6 +81,7 @@ export function ContactForm() {
           <span className="mb-2 block text-sm font-medium text-slate-700">Customer Name</span>
           <input
             type="text"
+            name="name"
             value={form.name}
             onChange={(event) => handleChange("name", event.target.value)}
             autoComplete="name"
@@ -76,6 +97,7 @@ export function ContactForm() {
           <span className="mb-2 block text-sm font-medium text-slate-700">Phone Number</span>
           <input
             type="tel"
+            name="phone"
             value={form.phone}
             onChange={(event) => handleChange("phone", event.target.value)}
             autoComplete="tel"
@@ -93,6 +115,7 @@ export function ContactForm() {
           <span className="mb-2 block text-sm font-medium text-slate-700">Vehicle Make and Model</span>
           <input
             type="text"
+            name="vehicle"
             value={form.vehicle}
             onChange={(event) => handleChange("vehicle", event.target.value)}
             className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 focus:border-[#f39a32] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#142536]"
@@ -106,6 +129,7 @@ export function ContactForm() {
         <label className="block">
           <span className="mb-2 block text-sm font-medium text-slate-700">Required Service</span>
           <select
+            name="service"
             value={form.service}
             onChange={(event) => handleChange("service", event.target.value)}
             className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 focus:border-[#f39a32] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#142536]"
@@ -129,6 +153,7 @@ export function ContactForm() {
       <label className="block">
         <span className="mb-2 block text-sm font-medium text-slate-700">Description of Vehicle Problem</span>
         <textarea
+          name="message"
           value={form.description}
           onChange={(event) => handleChange("description", event.target.value)}
           rows={5}
@@ -143,12 +168,13 @@ export function ContactForm() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <button
           type="submit"
+          disabled={loading}
           className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f39a32] px-5 py-3 text-sm font-semibold text-slate-950 shadow-[0_10px_30px_rgba(243,154,50,0.2)] transition hover:bg-[#e38f28]"
         >
-          Send Inquiry
+          {loading ? "Sending..." : "Send Inquiry"}
           <Send className="h-4 w-4" />
         </button>
-        <div className="text-sm text-slate-600" aria-live="polite">{status || "We will help you continue the conversation over WhatsApp."}</div>
+        <div className="text-sm text-green-700" role="status" aria-live="polite">{status || "We will help you continue the conversation over WhatsApp."}</div>
       </div>
 
       <div className="rounded-xl bg-slate-50 p-3 text-sm text-slate-600">

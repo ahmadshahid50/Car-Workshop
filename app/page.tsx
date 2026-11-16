@@ -104,8 +104,8 @@ export default function Home() {
             <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-2 shadow-[0_30px_80px_rgba(20,37,54,0.35)]">
               <figure>
                 <Image
-                  src="/images/hero-open-bonnet.jpg"
-                  alt="Representative stock photo of a mechanic inspecting a passenger car with its bonnet open."
+                  src="/images/under-car-inspection.jpg"
+                  alt="Representative stock photo of a mechanic inspecting a car on a workshop lift."
                   width={1600}
                   height={900}
                   sizes="(max-width: 1024px) 100vw, 50vw"
