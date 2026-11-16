@@ -112,9 +112,9 @@ export default function Home() {
                   fetchPriority="high"
                   className="h-[560px] w-full rounded-[1.5rem] object-cover"
                 />
-                <figcaption className="px-3 pb-2 pt-3 text-xs text-slate-300">
+                {/* <figcaption className="px-3 pb-2 pt-3 text-xs text-slate-300">
                   Representative stock photography; this is not a photo of our workshop.
-                </figcaption>
+                </figcaption> */}
               </figure>
             </div>
           </div>
