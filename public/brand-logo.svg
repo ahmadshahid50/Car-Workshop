@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Auto Specialists Logo</title>
+  <desc id="desc">Shield emblem with an orange stylized A and the words AUTO SPECIALISTS in dark navy.</desc>
+  <g transform="translate(0 8)">
+    <path d="M210 18 406 84v118c0 96-64 164-196 200-132-36-196-104-196-200V84l196-66Zm0 30 145 48v92c0 71-39 123-145 156-106-33-145-85-145-156V96l145-48Z" fill="#142536"/>
+    <path d="M198 80 331 129 300 163 164 121 128 161 103 141 166 80h32Z" fill="#F39A32" opacity="0.9"/>
+    <path d="M120 157h179l-67 80h-45l-67-80Zm46 75 47 60-28 22-58-72 39-10Zm58 0 13-9 34 31-29 32-61-55 43 1Z" fill="#F39A32"/>
+    <path d="M167 230c-19 0-34 15-34 33s15 34 34 34 34-15 34-34-15-33-34-33Zm83 0c-19 0-34 15-34 33s15 34 34 34 34-15 34-34-15-33-34-33Zm-172 8c16 0 29 13 29 29s-13 29-29 29-29-13-29-29 13-29 29-29Zm243 0c16 0 29 13 29 29s-13 29-29 29-29-13-29-29 13-29 29-29Z" fill="#142536" opacity="0.9"/>
+    <path d="M90 164 210 96l120 68-28 19-92-54-92 54-28-19Z" fill="#F39A32" opacity="0.8"/>
+    <path d="M88 205 132 210l-22 90-47-8 26-85Z" fill="#F39A32" opacity="0.8"/>
+    <path d="M321 205 365 210l22 90-47 8-26-85Z" fill="#F39A32" opacity="0.8"/>
+  </g>
+  <g fill="#142536" font-family="Arial, Helvetica, sans-serif" font-weight="900" letter-spacing="-8">
+    <text x="490" y="208" font-size="210">AUTO</text>
+    <text x="490" y="350" font-size="150">SPECIALISTS</text>
+  </g>
+</svg>
