@@ -25,7 +25,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center" aria-label={`${business.name} home page`}>
-          <BrandLogo className="h-12 w-auto sm:h-14" />
+          <BrandLogo color="navy" className="h-12 w-[162px] shrink-0 sm:h-14 sm:w-[188px]" />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">

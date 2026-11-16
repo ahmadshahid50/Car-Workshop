@@ -23,7 +23,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_1fr_1fr] lg:px-8">
         <div>
           <div className="mb-4">
-            <BrandLogo dark className="h-12 w-auto max-w-xs" />
+            <BrandLogo color="orange" className="h-12 w-[162px] max-w-xs shrink-0" />
           </div>
           <p className="max-w-sm text-sm leading-7 text-slate-300">
             {business.name} helps local vehicle owners with practical and dependable repair solutions in Township, Lahore.
